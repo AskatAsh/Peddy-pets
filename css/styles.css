@@ -1,0 +1,5 @@
+li.active{
+    border-radius: 3rem;
+    border: 2px solid #0E7A81;
+    background-color: rgba(14, 122, 129, 0.1);
+}
