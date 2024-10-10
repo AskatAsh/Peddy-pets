@@ -29,6 +29,7 @@
             dark2: 'rgba(19, 19, 19, 0.7)',
             dark3: 'rgba(19, 19, 19, 0.6)',
             dark4: 'rgba(19, 19, 19, 0.1)',
+            dark5: 'rgba(19, 19, 19, 0.03)',
             gray1: 'rgba(255, 255, 255, 0.6)',
             gray2: 'rgba(255, 255, 255, 0.05)',
             gray3: 'rgba(255, 255, 255, 0.9)'
@@ -81,7 +82,8 @@
 
     <!-- banner -->
     <div class="max-w-3xl w-11/12 mx-auto mt-10">
-      <h3 class="flex items-center justify-center gap-2 text-xl sm:text-2xl text-dark3 font-bold my-6">Bringing Families Together
+      <h3 class="flex items-center justify-center gap-2 text-xl sm:text-2xl text-dark3 font-bold my-6">Bringing Families
+        Together
         <img class="w-7 h-7" src="./assets/heart.png" alt="heart icon">
       </h3>
       <h1 class="text-4xl sm:text-6xl text-dark1 font-black text-center leading-normal">Your Path to Adoption Starts
@@ -139,17 +141,26 @@
             <button class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
           </div>
         </div> -->
+
+        <!-- no information available design -->
+        <div class="w-full bg-dark5 rounded-2xl py-20 px-5">
+          <img class="w-20 sm:w-auto block mx-auto" src="./assets/error.webp" alt="no information available icon">
+          <h4 class="text-3xl sm:text-4xl font-black text-dark1 text-center my-7">No Information Available</h4>
+          <p class="text-center max-w-2xl mx-auto text-dark2">It is a long established fact that a reader will be
+            distracted by the readable content of a page when looking at
+            its layout. The point of using Lorem Ipsum is that it has a.</p>
+        </div>
       </div>
 
       <!-- right -->
       <div class="border-2 border-dark4 max-w-[312px] w-full rounded-2xl p-5">
-        
+
       </div>
     </section>
   </main>
 
   <!-- footer -->
-   <footer class="bg-dark1 py-16 mt-10">
+  <footer class="bg-dark1 py-16 mt-10">
     <div class="max-w-[1440px] w-11/12 mx-auto flex flex-wrap lg:justify-between gap-12 text-white">
       <div class="text-gray3 space-y-2">
         <div class="flex items-center gap-2 mb-4">
@@ -178,18 +189,15 @@
       <form>
         <h4 class="text-xl font-semibold text-gray3 mb-4">Drop a Message</h4>
         <fieldset class="max-w-80 w-full">
-            <input
-              type="text"
-              placeholder="Enter your email"
-              class="input w-full bg-gray2 placeholder:text-gray1" />
-            <button class="btn w-full border-none bg-primary text-white mt-4 text-lg">Subscribe</button>
+          <input type="text" placeholder="Enter your email" class="input w-full bg-gray2 placeholder:text-gray1" />
+          <button class="btn w-full border-none bg-primary text-white mt-4 text-lg">Subscribe</button>
         </fieldset>
       </form>
     </div>
   </footer>
 
   <!-- javascript link -->
-   <script src="./js/script.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>

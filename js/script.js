@@ -64,6 +64,8 @@ async function getPetsData() {
   const petsResponse = await fetch(all_pets_url);
   const petsData = await petsResponse.json();
   const pets = petsData.pets;
-  displayPetsData(pets);
+  const status = petsData?.status || null;
+  console.log(status);
+//   displayPetsData(pets);
 }
-getPetsData();
+// getPetsData();
