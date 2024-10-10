@@ -30,6 +30,7 @@
             dark4: 'rgba(19, 19, 19, 0.1)',
             gray1: 'rgba(255, 255, 255, 0.6)',
             gray2: 'rgba(255, 255, 255, 0.05)',
+            gray3: 'rgba(255, 255, 255, 0.9)'
           },
           fontFamily: {
             lato: ['Lato', 'sans-serif'],
@@ -217,6 +218,46 @@
       </div>
     </section>
   </main>
+
+  <!-- footer -->
+   <footer class="bg-dark1 py-10">
+    <div class="max-w-[1440px] w-11/12 mx-auto flex flex-wrap lg:justify-between gap-12 mt-16 text-white">
+      <div class="text-gray3 space-y-2">
+        <div class="flex items-center gap-2 mb-4">
+          <img src="./assets/logo.webp" alt="peddy website logo">
+          <span class="text-3xl font-black text-white">Peddy</span>
+        </div>
+        <p>Location: av. Washington 165, NY CA 54003</p>
+        <p>Phone: +31 85 964 47 25</p>
+        <p>Email: info@yourdomain.com</p>
+        <p>Openings hours: 9.00 AM - 5.00 PM</p>
+        <div class="flex items-center gap-5 pt-4">
+          <a href="#"><img src="./assets/facebook-icon.png" alt="facebook-icon"></a>
+          <a href="#"><img src="./assets/x-icon.png" alt="x-icon"></a>
+          <a href="#"><img src="./assets/youtube-icon.png" alt="youtube-icon"></a>
+          <a href="#"><img src="./assets/instagram-icon.png" alt="instagram-icon"></a>
+        </div>
+      </div>
+      <nav class="text-gray1 flex flex-col gap-2">
+        <h4 class="text-xl font-semibold text-gray3 mb-4">Useful Links</h4>
+        <a href="#" class="link link-hover">About us</a>
+        <a href="#" class="link link-hover">Home</a>
+        <a href="#" class="link link-hover">Animals</a>
+        <a href="#" class="link link-hover">Foundation</a>
+        <a href="#" class="link link-hover">Contact</a>
+      </nav>
+      <form>
+        <h4 class="text-xl font-semibold text-gray3 mb-4">Drop a Message</h4>
+        <fieldset class="max-w-80 w-full">
+            <input
+              type="text"
+              placeholder="Enter your email"
+              class="input w-full bg-gray2 placeholder:text-gray1" />
+            <button class="btn w-full border-none bg-primary text-white mt-4 text-lg">Subscribe</button>
+        </fieldset>
+      </form>
+    </div>
+  </footer>
 </body>
 
 </html>
