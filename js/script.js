@@ -66,19 +66,19 @@ function handleCategory(e) {
 }
 
 // 4. handle data availability
-function handleAvailability(pets){
-    if(pets.length){
-        pets.forEach((pet) => {
-            const div = document.createElement("div");
-            div.className = "p-5 border-2 border-dark4 rounded-2xl";
-            div.innerHTML = `
+function handleAvailability(pets) {
+  if (pets.length) {
+    pets.forEach((pet) => {
+      const div = document.createElement("div");
+      div.className = "p-5 border-2 border-dark4 rounded-2xl";
+      div.innerHTML = `
                   <div class="w-full h-auto overflow-hidden rounded-xl">
                       <img class="w-full h-full object-cover" src=${
                         pet?.image
                       } alt="image of a ${pet?.breed || pet?.category}">
                     </div>
                     <h3 class="text-xl text-dark1 font-bold my-3">${
-                      pet?.name || pet?.breed || pet?.pet_name
+                        pet?.name || pet?.pet_name || pet?.breed
                     }</h3>
                     <ul class="text-dark2 space-y-2">
                       <li class="flex gap-2"><img src="./assets/category.png" alt=""><span>Breed: ${
@@ -101,15 +101,15 @@ function handleAvailability(pets){
                       <button id="adopt-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Adopt</button>
                       <button id="show-details" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
                     </div>`;
-                    const show_details_btn = div.querySelector("#show-details");
-                    // console.log(show_details_btn);
-                    show_details_btn.addEventListener("click", () => {
-                        showDetails(pet);
-                    });
-            petsContainer.appendChild(div);
-          });
-    }else{
-        petsContainer.innerHTML = `
+      const show_details_btn = div.querySelector("#show-details");
+      // console.log(show_details_btn);
+      show_details_btn.addEventListener("click", () => {
+        showDetails(pet);
+      });
+      petsContainer.appendChild(div);
+    });
+  } else {
+    petsContainer.innerHTML = `
         <div class="w-full bg-dark5 rounded-2xl py-20 px-5">
           <img class="w-20 sm:w-auto block mx-auto" src="./assets/error.webp" alt="no information available icon">
           <h4 class="text-3xl sm:text-4xl font-black text-dark1 text-center my-7">No Information Available</h4>
@@ -117,47 +117,50 @@ function handleAvailability(pets){
             distracted by the readable content of a page when looking at
             its layout. The point of using Lorem Ipsum is that it has a.</p>
         </div>`;
-    }
+  }
 }
 
 // 5. handle details button
 const showDetailsContainer = document.getElementById("show_details");
-function showDetails(pet){
-    console.log(pet);
-    showDetailsContainer.innerHTML = `
+function showDetails(pet) {
+  console.log(pet);
+  showDetailsContainer.innerHTML = `
     <div class="modal-box rounded-lg">
       <div class="w-full h-auto overflow-hidden rounded-lg">
-        <img class="w-full h-full object-cover" src="https://i.ibb.co.com/p0w744T/pet-1.jpg" alt="image of a pet">
+        <img class="w-full h-full object-cover" src=${
+          pet?.image
+        } alt="image of a ${pet?.breed || pet?.category}">
       </div>
-      <h3 class="text-2xl font-bold my-6">Alessia Max</h3>
+      <h3 class="text-2xl font-bold my-6">${
+        pet?.name || pet?.pet_name || pet?.breed
+      }</h3>
       <div class="flex gap-2 sm:gap-5 flex-wrap">
         <ul class="text-dark2 space-y-2">
-          <li class="flex items-center gap-2"><img class="w-5" src="./assets/category.png" alt=""><span>Breed: Golder
-              retriever</span></li>
+          <li class="flex items-center gap-2"><img class="w-5" src="./assets/category.png" alt=""><span>Breed:  ${
+            pet?.breed || "Not Available"
+          }</span></li>
           <li class="flex items-center gap-2"><img class="w-5" src="./assets/gender.png" alt=""><span>Gender:
-              Female</span></li>
+              ${pet?.gender || "Not Available"}</span></li>
           <li class="flex items-center gap-2"><img class="w-5" src="./assets/dollar.png" alt=""><span>Vaccinated status:
-              Partially</span></li>
+              ${pet?.vaccinated_status}</span></li>
         </ul>
         <ul class="text-dark2 space-y-2">
           <li class="flex items-center gap-2"><img class="w-5" src="./assets/calender.png" alt=""><span>Birth:
-              2024</span></li>
+              ${pet?.date_of_birth || "Not Available"}</span></li>
           <li class="flex items-center gap-2"><img class="w-5" src="./assets/dollar.png" alt=""><span>Price :
-              199$</span></li>
+              ${pet?.price ? pet?.price + "$" : "Negotiable"}</span></li>
         </ul>
       </div>
       <hr class="my-5">
       <h4 class="text-lg font-bold text-dark1">Details Information</h4>
       <p class="text-dark2 mt-3">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at
-        its layout.
-        The point of using is that it has a more-or-less normal distribution of letters, as opposed to using.
+        ${pet?.pet_details || "Not Available"}
       </p>
       <div class="modal-action w-full">
         <form method="dialog" class="w-full">
           <button class="btn w-full border-2 border-light1 bg-light1 text-primary text-xl font-bold">Close</button>
         </form>
       </div>
-    </div>`
-    show_details.showModal();
+    </div>`;
+  show_details.showModal();
 }
