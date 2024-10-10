@@ -5,14 +5,17 @@ const categories_url =
 
 // display pets category
 function displayCategories(categories) {
+  //   console.log(categories);
   categories.forEach((category) => {
     const li = document.createElement("li");
+    li.setAttribute("id", `${category?.id}`);
     li.className =
       "flex items-center justify-center gap-3 p-5 border-2 border-light1 rounded-xl sm:w-full cursor-pointer hover:bg-light1";
     li.innerHTML = `
         <img class="w-8" src="${category?.category_icon}" alt="${category?.category} icon">
-        <span class="text-xl sm:text-2xl text-dark1 font-black">${category?.category}s</span>`;
+        <span class="text-xl sm:text-2xl text-dark1 font-black"><span id="category_name">${category?.category}</span>s</span>`;
     categories_container.appendChild(li);
+    li.addEventListener("click", handleCategory);
   });
 }
 // fetch pets categories using categories api
@@ -26,26 +29,38 @@ getCategoriesData();
 
 // 2. fetch all pets data and display in cards ui
 const petsContainer = document.getElementById("pets-cards");
-const all_pets_url = "https://openapi.programming-hero.com/api/peddy/pets";
+const pets_url = "https://openapi.programming-hero.com/api/peddy/pets";
 
 function displayPetsData(pets) {
-    petsContainer.innerHTML = `<span class="loading loading-dots loading-lg mt-8 inline-block mx-auto"></span>`;
-    setTimeout(() => {
-        petsContainer.innerHTML = "";
-        pets.forEach(pet => {
-            // console.log(pet);
-            const div = document.createElement("div");
-            div.className = "p-5 border-2 border-dark4 rounded-2xl";
-            div.innerHTML = `
+  petsContainer.innerHTML = `<span class="loading loading-dots loading-lg mt-8 inline-block mx-auto"></span>`;
+  setTimeout(() => {
+    petsContainer.innerHTML = "";
+    pets.forEach((pet) => {
+      // console.log(pet);
+      const div = document.createElement("div");
+      div.className = "p-5 border-2 border-dark4 rounded-2xl";
+      div.innerHTML = `
             <div class="w-full h-auto overflow-hidden rounded-xl">
-                <img class="w-full h-full object-cover" src=${pet?.image} alt="image of a ${pet?.breed || pet?.category}">
+                <img class="w-full h-full object-cover" src=${
+                  pet?.image
+                } alt="image of a ${pet?.breed || pet?.category}">
               </div>
-              <h3 class="text-xl text-dark1 font-bold my-3">${pet?.name || pet?.breed}</h3>
+              <h3 class="text-xl text-dark1 font-bold my-3">${
+                pet?.name || pet?.breed
+              }</h3>
               <ul class="text-dark2 space-y-2">
-                <li class="flex gap-2"><img src="./assets/category.png" alt=""><span>Breed: ${pet?.breed || "Not Available"}</span></li>
-                <li class="flex gap-2"><img src="./assets/calender.png" alt=""><span>Birth: ${pet?.date_of_birth || "Not Available"}</span></li>
-                <li class="flex gap-2"><img src="./assets/gender.png" alt=""><span>Gender: ${pet?.gender || "Not Available"}</span></li>
-                <li class="flex gap-2"><img src="./assets/dollar.png" alt=""><span>Price : ${pet?.price ? pet?.price+"$" : "Negotiable"}</span></li>
+                <li class="flex gap-2"><img src="./assets/category.png" alt=""><span>Breed: ${
+                  pet?.breed || "Not Available"
+                }</span></li>
+                <li class="flex gap-2"><img src="./assets/calender.png" alt=""><span>Birth: ${
+                  pet?.date_of_birth || "Not Available"
+                }</span></li>
+                <li class="flex gap-2"><img src="./assets/gender.png" alt=""><span>Gender: ${
+                  pet?.gender || "Not Available"
+                }</span></li>
+                <li class="flex gap-2"><img src="./assets/dollar.png" alt=""><span>Price : ${
+                  pet?.price ? pet?.price + "$" : "Negotiable"
+                }</span></li>
               </ul>
               <hr class="border border-dark4 my-4">
               <div class="flex gap-4">
@@ -54,18 +69,34 @@ function displayPetsData(pets) {
                 <button id="adopt-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Adopt</button>
                 <button id="details-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
               </div>`;
-            petsContainer.appendChild(div);
-        })
-    }, 2000)
-    
+      petsContainer.appendChild(div);
+    });
+  }, 2000);
 }
 // fetch pets data using api
 async function getPetsData() {
-  const petsResponse = await fetch(all_pets_url);
+  const petsResponse = await fetch(pets_url);
   const petsData = await petsResponse.json();
   const pets = petsData.pets;
   const status = petsData?.status || null;
-  console.log(status);
+  //   console.log(status);
   displayPetsData(pets);
 }
 getPetsData();
+
+// 3. fetch pets data by category
+
+// fetch pets data by category
+async function getPetsByCategory(url) {
+  const petsResponse = await fetch(url);
+  const petsData = await petsResponse.json();
+  console.log(petsData);
+}
+// handle each category click event
+function handleCategory(e) {
+    const pet_category = e.currentTarget.querySelector("#category_name").innerText.toLowerCase();
+  console.log(pet_category);
+  const url = `https://openapi.programming-hero.com/api/peddy/category/${pet_category}`;
+  //   console.log(url);
+    getPetsByCategory(url);
+}
