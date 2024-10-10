@@ -46,7 +46,7 @@ function displayPetsData(pets) {
                 } alt="image of a ${pet?.breed || pet?.category}">
               </div>
               <h3 class="text-xl text-dark1 font-bold my-3">${
-                pet?.name || pet?.breed
+                pet?.name || pet?.breed || pet?.pet_name
               }</h3>
               <ul class="text-dark2 space-y-2">
                 <li class="flex gap-2"><img src="./assets/category.png" alt=""><span>Breed: ${
@@ -90,13 +90,16 @@ getPetsData();
 async function getPetsByCategory(url) {
   const petsResponse = await fetch(url);
   const petsData = await petsResponse.json();
-  console.log(petsData);
+  const pets = petsData.data;
+  console.log(petsData.data);
+  displayPetsData(pets);
 }
 // handle each category click event
 function handleCategory(e) {
-    const pet_category = e.currentTarget.querySelector("#category_name").innerText.toLowerCase();
-  console.log(pet_category);
+  const pet_category = e.currentTarget
+    .querySelector("#category_name")
+    .innerText.toLowerCase();
   const url = `https://openapi.programming-hero.com/api/peddy/category/${pet_category}`;
   //   console.log(url);
-    getPetsByCategory(url);
+  getPetsByCategory(url);
 }
