@@ -6,3 +6,8 @@ li.active{
 .cards-container{
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
+@media screen and (max-width: 375px) {
+    .cards-container{
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
