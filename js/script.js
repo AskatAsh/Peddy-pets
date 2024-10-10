@@ -66,6 +66,6 @@ async function getPetsData() {
   const pets = petsData.pets;
   const status = petsData?.status || null;
   console.log(status);
-//   displayPetsData(pets);
+  displayPetsData(pets);
 }
-// getPetsData();
+getPetsData();
