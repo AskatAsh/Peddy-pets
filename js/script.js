@@ -5,7 +5,6 @@ const categories_url =
 
 // display pets category
 function displayCategories(categories) {
-  //   console.log(categories);
   categories.forEach((category) => {
     const li = document.createElement("li");
     li.setAttribute("id", `${category?.id}`);
@@ -36,42 +35,6 @@ function displayPetsData(pets) {
   setTimeout(() => {
     petsContainer.innerHTML = "";
     handleAvailability(pets);
-    // pets.forEach((pet) => {
-    //   // console.log(pet);
-    //   const div = document.createElement("div");
-    //   div.className = "p-5 border-2 border-dark4 rounded-2xl";
-    //   div.innerHTML = `
-    //         <div class="w-full h-auto overflow-hidden rounded-xl">
-    //             <img class="w-full h-full object-cover" src=${
-    //               pet?.image
-    //             } alt="image of a ${pet?.breed || pet?.category}">
-    //           </div>
-    //           <h3 class="text-xl text-dark1 font-bold my-3">${
-    //             pet?.name || pet?.breed || pet?.pet_name
-    //           }</h3>
-    //           <ul class="text-dark2 space-y-2">
-    //             <li class="flex gap-2"><img src="./assets/category.png" alt=""><span>Breed: ${
-    //               pet?.breed || "Not Available"
-    //             }</span></li>
-    //             <li class="flex gap-2"><img src="./assets/calender.png" alt=""><span>Birth: ${
-    //               pet?.date_of_birth || "Not Available"
-    //             }</span></li>
-    //             <li class="flex gap-2"><img src="./assets/gender.png" alt=""><span>Gender: ${
-    //               pet?.gender || "Not Available"
-    //             }</span></li>
-    //             <li class="flex gap-2"><img src="./assets/dollar.png" alt=""><span>Price : ${
-    //               pet?.price ? pet?.price + "$" : "Negotiable"
-    //             }</span></li>
-    //           </ul>
-    //           <hr class="border border-dark4 my-4">
-    //           <div class="flex gap-4">
-    //             <button id="like-btn" class="border-2 border-light1 p-2 w-16 rounded-xl"><img class="w-6 inline-block mx-auto"
-    //                 src="./assets/like-icon.png" alt="like icon"></button>
-    //             <button id="adopt-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Adopt</button>
-    //             <button id="details-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
-    //           </div>`;
-    //   petsContainer.appendChild(div);
-    // });
   }, 2000);
 }
 // fetch pets data using api
@@ -79,8 +42,6 @@ async function getPetsData() {
   const petsResponse = await fetch(pets_url);
   const petsData = await petsResponse.json();
   const pets = petsData.pets;
-  const status = petsData?.status || null;
-  //   console.log(status);
   displayPetsData(pets);
 }
 getPetsData();
@@ -93,7 +54,6 @@ async function getPetsByCategory(url) {
   const petsData = await petsResponse.json();
   const pets = petsData.data;
   console.log(petsData.data);
-//   handleAvailability(pets);
   displayPetsData(pets);
 }
 // handle each category click event
@@ -102,16 +62,13 @@ function handleCategory(e) {
     .querySelector("#category_name")
     .innerText.toLowerCase();
   const url = `https://openapi.programming-hero.com/api/peddy/category/${pet_category}`;
-  //   console.log(url);
   getPetsByCategory(url);
 }
 
 // 4. handle data availability
 function handleAvailability(pets){
     if(pets.length){
-        console.log("data available");
         pets.forEach((pet) => {
-            // console.log(pet);
             const div = document.createElement("div");
             div.className = "p-5 border-2 border-dark4 rounded-2xl";
             div.innerHTML = `
@@ -147,7 +104,6 @@ function handleAvailability(pets){
             petsContainer.appendChild(div);
           });
     }else{
-        console.log("no data is available");
         petsContainer.innerHTML = `
         <div class="w-full bg-dark5 rounded-2xl py-20 px-5">
           <img class="w-20 sm:w-auto block mx-auto" src="./assets/error.webp" alt="no information available icon">
