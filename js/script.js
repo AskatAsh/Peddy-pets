@@ -99,8 +99,13 @@ function handleAvailability(pets){
                       <button id="like-btn" class="border-2 border-light1 p-2 w-16 rounded-xl"><img class="w-6 inline-block mx-auto"
                           src="./assets/like-icon.png" alt="like icon"></button>
                       <button id="adopt-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Adopt</button>
-                      <button id="details-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
+                      <button id="show-details" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
                     </div>`;
+                    const show_details_btn = div.querySelector("#show-details");
+                    // console.log(show_details_btn);
+                    show_details_btn.addEventListener("click", () => {
+                        showDetails(pet);
+                    });
             petsContainer.appendChild(div);
           });
     }else{
@@ -113,4 +118,46 @@ function handleAvailability(pets){
             its layout. The point of using Lorem Ipsum is that it has a.</p>
         </div>`;
     }
+}
+
+// 5. handle details button
+const showDetailsContainer = document.getElementById("show_details");
+function showDetails(pet){
+    console.log(pet);
+    showDetailsContainer.innerHTML = `
+    <div class="modal-box rounded-lg">
+      <div class="w-full h-auto overflow-hidden rounded-lg">
+        <img class="w-full h-full object-cover" src="https://i.ibb.co.com/p0w744T/pet-1.jpg" alt="image of a pet">
+      </div>
+      <h3 class="text-2xl font-bold my-6">Alessia Max</h3>
+      <div class="flex gap-2 sm:gap-5 flex-wrap">
+        <ul class="text-dark2 space-y-2">
+          <li class="flex items-center gap-2"><img class="w-5" src="./assets/category.png" alt=""><span>Breed: Golder
+              retriever</span></li>
+          <li class="flex items-center gap-2"><img class="w-5" src="./assets/gender.png" alt=""><span>Gender:
+              Female</span></li>
+          <li class="flex items-center gap-2"><img class="w-5" src="./assets/dollar.png" alt=""><span>Vaccinated status:
+              Partially</span></li>
+        </ul>
+        <ul class="text-dark2 space-y-2">
+          <li class="flex items-center gap-2"><img class="w-5" src="./assets/calender.png" alt=""><span>Birth:
+              2024</span></li>
+          <li class="flex items-center gap-2"><img class="w-5" src="./assets/dollar.png" alt=""><span>Price :
+              199$</span></li>
+        </ul>
+      </div>
+      <hr class="my-5">
+      <h4 class="text-lg font-bold text-dark1">Details Information</h4>
+      <p class="text-dark2 mt-3">
+        It is a long established fact that a reader will be distracted by the readable content of a page when looking at
+        its layout.
+        The point of using is that it has a more-or-less normal distribution of letters, as opposed to using.
+      </p>
+      <div class="modal-action w-full">
+        <form method="dialog" class="w-full">
+          <button class="btn w-full border-2 border-light1 bg-light1 text-primary text-xl font-bold">Close</button>
+        </form>
+      </div>
+    </div>`
+    show_details.showModal();
 }
