@@ -26,16 +26,62 @@ getCategoriesData();
 
 // 2. fetch all pets data and display in cards ui
 const petsContainer = document.getElementById("pets-cards");
-const all_pets_url = 'https://openapi.programming-hero.com/api/peddy/pets';
+const all_pets_url = "https://openapi.programming-hero.com/api/peddy/pets";
 
-function displayPetsData(pets){
-    console.log(pets)
+function displayPetsData(pets) {
+    pets.forEach(pet => {
+        console.log(pet);
+        const div = document.createElement("div");
+        div.className = "p-5 border-2 border-dark4 rounded-2xl";
+        div.innerHTML = `
+        <div class="w-full h-auto overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover" src=${pet?.image} alt="image of a ${pet?.breed || pet?.category}">
+          </div>
+          <h3 class="text-xl text-dark1 font-bold my-3">${pet?.name || pet?.breed}</h3>
+          <ul class="text-dark2 space-y-2">
+            <li class="flex gap-2"><img src="./assets/category.png" alt=""><span>Breed: ${pet?.breed || "Not Available"}</span></li>
+            <li class="flex gap-2"><img src="./assets/calender.png" alt=""><span>Birth: ${pet?.date_of_birth || "Not Available"}</span></li>
+            <li class="flex gap-2"><img src="./assets/gender.png" alt=""><span>Gender: ${pet?.gender || "Not Available"}</span></li>
+            <li class="flex gap-2"><img src="./assets/dollar.png" alt=""><span>Price : ${pet?.price ? pet?.price+"$" : "Negotiable"}</span></li>
+          </ul>
+          <hr class="border border-dark4 my-4">
+          <div class="flex gap-4">
+            <button id="like-btn" class="border-2 border-light1 p-2 rounded-xl w-16"><img class="w-6 inline-block mx-auto"
+                src="./assets/like-icon.png" alt="like icon"></button>
+            <button id="adopt-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Adopt</button>
+            <button id="details-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
+          </div>`;
+        //   console.log(div);
+        petsContainer.appendChild(div);
+    })
 }
 // fetch pets data using api
-async function getPetsData(){
-    const petsResponse = await fetch(all_pets_url);
-    const petsData = await petsResponse.json();
-    const pets = petsData.pets;
-    displayPetsData(pets);
+async function getPetsData() {
+  const petsResponse = await fetch(all_pets_url);
+  const petsData = await petsResponse.json();
+  const pets = petsData.pets;
+  displayPetsData(pets);
 }
 getPetsData();
+
+{
+  /* <div class="p-5 border-2 border-dark4 rounded-2xl">
+          <div class="w-full h-auto overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover" src="https://i.ibb.co.com/p0w744T/pet-1.jpg" alt="image of a pet">
+          </div>
+          <h3 class="text-xl text-dark1 font-bold my-3">Mister Tartosh</h3>
+          <ul class="text-dark2 space-y-2">
+            <li class="flex gap-2"><img src="./assets/category.png" alt=""><span>Breed: Golder retriever</span></li>
+            <li class="flex gap-2"><img src="./assets/calender.png" alt=""><span>Birth: 2024</span></li>
+            <li class="flex gap-2"><img src="./assets/gender.png" alt=""><span>Gender: Female</span></li>
+            <li class="flex gap-2"><img src="./assets/dollar.png" alt=""><span>Price : 199$</span></li>
+          </ul>
+          <hr class="border border-dark4 my-4">
+          <div class="flex gap-4">
+            <button class="border-2 border-light1 p-2 rounded-xl w-16"><img class="w-6 inline-block mx-auto"
+                src="./assets/like-icon.png" alt="like icon"></button>
+            <button class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Adopt</button>
+            <button class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
+          </div>
+        </div> */
+}
