@@ -3,6 +3,9 @@ li.active{
     border: 2px solid #0E7A81;
     background-color: rgba(14, 122, 129, 0.1);
 }
+button.liked{
+    background-color: rgba(14, 122, 129, 0.15);
+}
 .cards-container{
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }

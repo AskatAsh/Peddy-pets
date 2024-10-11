@@ -114,6 +114,11 @@ function handleAvailability(pets) {
         like_pet_btn.setAttribute("disabled", "");
         like_pet_btn.classList.add("liked");
       });
+      // adopt pets handler
+      const adopt_btn = div.querySelector("#adopt-btn");
+      adopt_btn.addEventListener("click", () => {
+        handleAdoptPets(pet);
+      });
     });
   } else {
     petsContainer.innerHTML = `
@@ -176,12 +181,39 @@ const likedPetsContainer = document.getElementById("liked-pets");
 let likedCount = 0;
 function handleLikedPets(pet) {
   likedCount++;
-  likedCount ? document.getElementById("no-liked-pets").style.display = "none" : document.getElementById("no-liked-pets").style.display = "flex";
+  likedCount
+    ? (document.getElementById("no-liked-pets").style.display = "none")
+    : (document.getElementById("no-liked-pets").style.display = "flex");
   console.log(pet);
   const div = document.createElement("div");
   div.className = "w-full h-[124px] overflow-hidden rounded-xl";
   div.innerHTML = `<img class="w-full h-full object-cover" src=${
-                        pet?.image
-                    } alt="image of a ${pet?.breed || pet?.category}">`
+    pet?.image
+  } alt="image of a ${pet?.breed || pet?.category}">`;
   likedPetsContainer.appendChild(div);
+}
+
+// 7. handle adopt button
+const adoptMessageContainer = document.getElementById("adopt_message");
+function handleAdoptPets(pet) {
+  adoptMessageContainer.innerHTML = `
+  <div class="modal-box rounded-lg">
+  <img class="w-10 block mx-auto object-cover my-6" src="./assets/logo.webp" alt="logo of peddy">
+  <h3 class="text-3xl font-black my-6 text-center">Congrats</h3>
+  <p class="text-dark2 my-3 text-center">
+  Your Pet Adoption Process is Starting...
+  </p>
+  <p id="adoption-countdown" class="text-4xl font-black text-center mt-3">3</p>
+  </div>`;
+  const adoption_countdown = document.getElementById("adoption-countdown");
+  let countdown = +adoption_countdown.innerText;
+  adoptMessageContainer.classList.add("modal-open");
+  const countdownTimer = setInterval(() => {
+    countdown--;
+    adoption_countdown.innerText = countdown;
+    if (countdown <= 0) {
+      clearInterval(countdownTimer);
+      adoptMessageContainer.classList.remove("modal-open");
+    }
+  }, 1000);
 }
