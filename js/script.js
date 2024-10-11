@@ -118,6 +118,9 @@ function handleAvailability(pets) {
       const adopt_btn = div.querySelector("#adopt-btn");
       adopt_btn.addEventListener("click", () => {
         handleAdoptPets(pet);
+        adopt_btn.classList.add("adopted");
+        adopt_btn.setAttribute("disabled", "");
+        adopt_btn.innerText = "Adopted";
       });
     });
   } else {

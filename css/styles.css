@@ -6,6 +6,9 @@ li.active{
 button.liked{
     background-color: rgba(14, 122, 129, 0.15);
 }
+button.adopted{
+    background-color: rgba(14, 122, 129, 0.3);
+}
 .cards-container{
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
