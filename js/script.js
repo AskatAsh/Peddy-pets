@@ -3,6 +3,8 @@ const categories_container = document.getElementById("categories");
 const categories_url =
   "https://openapi.programming-hero.com/api/peddy/categories";
 
+let pets_data_list;
+
 // display pets category
 function displayCategories(categories) {
   categories.forEach((category) => {
@@ -42,6 +44,7 @@ async function getPetsData() {
   const petsResponse = await fetch(pets_url);
   const petsData = await petsResponse.json();
   const pets = petsData.pets;
+  pets_data_list = pets;
   displayPetsData(pets);
 }
 getPetsData();
@@ -53,7 +56,7 @@ async function getPetsByCategory(url) {
   const petsResponse = await fetch(url);
   const petsData = await petsResponse.json();
   const pets = petsData.data;
-  console.log(petsData.data);
+  pets_data_list = pets;
   displayPetsData(pets);
 }
 // handle each category click event
@@ -219,4 +222,14 @@ function handleAdoptPets(pet) {
       adoptMessageContainer.classList.remove("modal-open");
     }
   }, 1000);
+}
+
+// 8. handle sort by price
+const sort_by_price_btn = document.getElementById("sort-by-price");
+sort_by_price_btn.addEventListener("click", () => {
+  sortByPrice(pets_data_list);
+});
+function sortByPrice(pets_data){
+  const sorted_pets_data = pets_data.sort((a,b) => b.price-a.price);
+  displayPetsData(sorted_pets_data);
 }
