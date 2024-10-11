@@ -72,13 +72,13 @@ function handleAvailability(pets) {
       const div = document.createElement("div");
       div.className = "p-5 border-2 border-dark4 rounded-2xl";
       div.innerHTML = `
-                  <div class="w-full h-auto overflow-hidden rounded-xl">
+                    <div class="w-full h-auto overflow-hidden rounded-xl">
                       <img class="w-full h-full object-cover" src=${
                         pet?.image
                       } alt="image of a ${pet?.breed || pet?.category}">
                     </div>
                     <h3 class="text-xl text-dark1 font-bold my-3">${
-                        pet?.name || pet?.pet_name || pet?.breed
+                      pet?.name || pet?.pet_name || pet?.breed
                     }</h3>
                     <ul class="text-dark2 space-y-2">
                       <li class="flex gap-2"><img src="./assets/category.png" alt=""><span>Breed: ${
@@ -101,11 +101,19 @@ function handleAvailability(pets) {
                       <button id="adopt-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Adopt</button>
                       <button id="show-details" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
                     </div>`;
+      petsContainer.appendChild(div);
+      // show details handler
       const show_details_btn = div.querySelector("#show-details");
       show_details_btn.addEventListener("click", () => {
         showDetails(pet);
       });
-      petsContainer.appendChild(div);
+      // like pets handler
+      const like_pet_btn = div.querySelector("#like-btn");
+      like_pet_btn.addEventListener("click", () => {
+        handleLikedPets(pet);
+        like_pet_btn.setAttribute("disabled", "");
+        like_pet_btn.classList.add("liked");
+      });
     });
   } else {
     petsContainer.innerHTML = `
@@ -161,4 +169,19 @@ function showDetails(pet) {
       </div>
     </div>`;
   show_details.showModal();
+}
+
+// 6. handle like button
+const likedPetsContainer = document.getElementById("liked-pets");
+let likedCount = 0;
+function handleLikedPets(pet) {
+  likedCount++;
+  likedCount ? document.getElementById("no-liked-pets").style.display = "none" : document.getElementById("no-liked-pets").style.display = "flex";
+  console.log(pet);
+  const div = document.createElement("div");
+  div.className = "w-full h-[124px] overflow-hidden rounded-xl";
+  div.innerHTML = `<img class="w-full h-full object-cover" src=${
+                        pet?.image
+                    } alt="image of a ${pet?.breed || pet?.category}">`
+  likedPetsContainer.appendChild(div);
 }
