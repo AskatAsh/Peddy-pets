@@ -195,7 +195,6 @@ function handleLikedPets(pet) {
   likedCount
     ? (document.getElementById("no-liked-pets").style.display = "none")
     : (document.getElementById("no-liked-pets").style.display = "flex");
-  console.log(pet);
   const div = document.createElement("div");
   div.className = "w-full h-[124px] overflow-hidden rounded-xl";
   div.innerHTML = `<img class="w-full h-full object-cover" src=${
