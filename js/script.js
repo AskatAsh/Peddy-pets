@@ -16,7 +16,14 @@ function displayCategories(categories) {
         <img class="w-8" src="${category?.category_icon}" alt="${category?.category} icon">
         <span class="text-xl sm:text-2xl text-dark1 font-black"><span id="category_name">${category?.category}</span>s</span>`;
     categories_container.appendChild(li);
-    li.addEventListener("click", handleCategory);
+    li.addEventListener("click", (e)=> {
+      handleCategory(e);
+      const lists = categories_container.querySelectorAll("li");
+      lists.forEach(list => {
+        list.classList.remove("active");
+      })
+      li.classList.add("active");
+    });
   });
 }
 // fetch pets categories using categories api
