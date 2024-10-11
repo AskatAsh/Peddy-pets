@@ -131,9 +131,7 @@ function handleAvailability(pets) {
         <div class="w-full bg-dark5 rounded-2xl py-20 px-5">
           <img class="w-20 sm:w-auto block mx-auto" src="./assets/error.webp" alt="no information available icon">
           <h4 class="text-3xl sm:text-4xl font-black text-dark1 text-center my-7">No Information Available</h4>
-          <p class="text-center max-w-2xl mx-auto text-dark2">It is a long established fact that a reader will be
-            distracted by the readable content of a page when looking at
-            its layout. The point of using Lorem Ipsum is that it has a.</p>
+          <p class="text-center max-w-2xl mx-auto text-dark2">The information you are trying to obtain is not available. Please check out other pets category or refresh to get all pets data.</p>
         </div>`;
   }
 }
