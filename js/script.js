@@ -99,10 +99,10 @@ function handleAvailability(pets) {
                     </ul>
                     <hr class="border border-dark4 my-4">
                     <div class="flex gap-4">
-                      <button id="like-btn" class="border-2 border-light1 p-2 w-16 rounded-xl"><img class="w-6 inline-block mx-auto"
+                      <button id="like-btn" class="hover:bg-light1 border-2 border-light1 p-2 w-16 rounded-xl"><img class="w-6 inline-block mx-auto"
                           src="./assets/like-icon.png" alt="like icon"></button>
-                      <button id="adopt-btn" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Adopt</button>
-                      <button id="show-details" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
+                      <button id="adopt-btn" class="hover:bg-light1 text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Adopt</button>
+                      <button id="show-details" class="hover:bg-light1 text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
                     </div>`;
       petsContainer.appendChild(div);
       // show details handler
