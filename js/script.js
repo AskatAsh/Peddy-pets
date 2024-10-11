@@ -102,7 +102,6 @@ function handleAvailability(pets) {
                       <button id="show-details" class="text-primary font-bold border-2 border-light1 p-2 rounded-xl flex-1">Details</button>
                     </div>`;
       const show_details_btn = div.querySelector("#show-details");
-      // console.log(show_details_btn);
       show_details_btn.addEventListener("click", () => {
         showDetails(pet);
       });
@@ -123,7 +122,6 @@ function handleAvailability(pets) {
 // 5. handle details button
 const showDetailsContainer = document.getElementById("show_details");
 function showDetails(pet) {
-  console.log(pet);
   showDetailsContainer.innerHTML = `
     <div class="modal-box rounded-lg">
       <div class="w-full h-auto overflow-hidden rounded-lg">
