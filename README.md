@@ -3,6 +3,10 @@
 ### Project Description
 This Project is about a website which helps users to adopt their favourite pets, like a pet, and get information like breed, birth date, price, details etc.
 
+### Live site link: [peddypets-adopt.netlify.app](https://peddypets-adopt.netlify.app/)
+
+![Screenshot of peddy pets website](./assets/screenshot.png)
+
 ### Key Features of this project
 - Fetch pets category and show in UI
 - Fetch pets data and display in card layout design
@@ -19,7 +23,3 @@ This Project is about a website which helps users to adopt their favourite pets,
 - Uses of `let, const` instead of var
 - `Async await` to handle api responses
 - Methods like `foreach, sort` are used
-
-### Live site link: [peddypets-adopt.netlify.app](https://peddypets-adopt.netlify.app/)
-
-![Screenshot of peddy pets website](./assets/screenshot.png)
